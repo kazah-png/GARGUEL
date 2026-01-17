@@ -1,0 +1,125 @@
+═══════════════════════════════════════════════════════════════
+  CÓMO GENERAR EL EJECUTABLE .EXE
+  GARGUEL v1.0 - Copyright (c) 2026 kazah-png
+═══════════════════════════════════════════════════════════════
+
+📋 REQUISITOS PREVIOS
+───────────────────────────────────────────────────────────────
+
+1. Python instalado (versión 3.8 o superior)
+   Descarga: https://www.python.org/downloads/
+   
+   ⚠️ IMPORTANTE: Al instalar, marca la casilla:
+   ☑ "Add Python to PATH"
+
+
+🔧 MÉTODO 1: USO RÁPIDO (Recomendado)
+───────────────────────────────────────────────────────────────
+
+1. Doble click en: GENERAR_EXE.bat
+
+2. Espera 2-3 minutos
+
+3. ¡Listo! Tu ejecutable está en: dist\GARGUEL_v1.0.exe
+
+
+🔧 MÉTODO 2: MANUAL (Si el método 1 no funciona)
+───────────────────────────────────────────────────────────────
+
+Abre CMD o PowerShell en esta carpeta y ejecuta:
+
+Paso 1 - Instalar PyInstaller:
+   py -m pip install pyinstaller
+
+Paso 2 - Generar ejecutable:
+   py -m PyInstaller --noconfirm --onefile --windowed --name GARGUEL_v1.0 --add-data "templates;templates" --add-data "config.json;." garguel.py
+
+Paso 3 - Copiar archivos:
+   xcopy /E /I /Y templates dist\templates
+   copy config.json dist\
+
+
+📦 RESULTADO
+───────────────────────────────────────────────────────────────
+
+Después de generar, tendrás en la carpeta "dist":
+
+dist\
+├── GARGUEL_v1.0.exe     ← Ejecutable principal
+├── templates\           ← Imágenes de botones
+├── config.json         ← Configuración
+├── README.md           ← Documentación
+└── LEEME.txt           ← Instrucciones
+
+
+🚀 CÓMO USAR EL EJECUTABLE
+───────────────────────────────────────────────────────────────
+
+1. Abre Inazuma Eleven Victory Road en MODO VENTANA
+
+2. Doble click en: dist\GARGUEL_v1.0.exe
+
+3. En GARGUEL:
+   - Selecciona dificultad
+   - Click "▶ INICIAR"
+
+4. ¡El bot farmea automáticamente!
+
+
+📤 CÓMO DISTRIBUIR
+───────────────────────────────────────────────────────────────
+
+Para compartir GARGUEL, copia la carpeta "dist" completa.
+
+NO copies:
+✗ garguel.py (código fuente)
+✗ build/, __pycache__/ (archivos temporales)
+✗ .spec (archivo de PyInstaller)
+
+
+🐛 SOLUCIÓN DE PROBLEMAS
+───────────────────────────────────────────────────────────────
+
+❌ Error: "py no se reconoce"
+   → Python no está en PATH
+   → Reinstala Python y marca "Add Python to PATH"
+
+❌ Error: "PyInstaller no encontrado"
+   → Ejecuta: py -m pip install pyinstaller
+
+❌ Error generando .exe
+   → Actualiza PyInstaller: py -m pip install --upgrade pyinstaller
+   → Verifica que todas las dependencias estén: py -m pip install -r requirements.txt
+
+❌ El .exe no inicia
+   → Asegúrate de que templates/ y config.json estén en la misma carpeta
+   → Ejecuta desde CMD para ver errores: dist\GARGUEL_v1.0.exe
+
+
+💡 ALTERNATIVA: EJECUTAR SIN .EXE
+───────────────────────────────────────────────────────────────
+
+Si no necesitas .exe, puedes ejecutar directamente:
+
+1. Instala dependencias:
+   py -m pip install -r requirements.txt
+
+2. Ejecuta:
+   py garguel.py
+
+
+📞 MÁS INFORMACIÓN
+───────────────────────────────────────────────────────────────
+
+• README.md - Documentación técnica completa
+• LEEME.txt - Instrucciones de uso del bot
+• INSTRUCCIONES.md - Guía rápida
+
+
+═══════════════════════════════════════════════════════════════
+
+⚽ GARGUEL v1.0
+Copyright (c) 2026 kazah-png
+Todos los derechos reservados
+
+═══════════════════════════════════════════════════════════════

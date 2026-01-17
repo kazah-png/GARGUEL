@@ -1,0 +1,214 @@
+╔══════════════════════════════════════════════════════════════╗
+║                    GARGUEL v1.0                              ║
+║          Bot de Farmeo con Detección Dinámica               ║
+║                                                              ║
+║              Copyright (c) 2026 kazah-png                    ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+⚡ INICIO RÁPIDO (EJECUTAR EL BOT)
+═══════════════════════════════════════════════════════════════
+
+OPCIÓN A - Con Python (Recomendado para primera vez):
+
+   1. Abre CMD en esta carpeta
+   2. Instala dependencias: py -m pip install -r requirements.txt
+   3. Ejecuta: py garguel.py
+   4. ¡Listo!
+
+
+OPCIÓN B - Generar ejecutable .exe:
+
+   1. Doble click en: GENERAR_EXE.bat
+   2. Espera 2-3 minutos
+   3. Ejecuta: dist\GARGUEL_v1.0.exe
+
+   📖 Ver: COMO_GENERAR_EXE.txt para más detalles
+
+
+🎮 CÓMO USAR GARGUEL
+═══════════════════════════════════════════════════════════════
+
+1. Abre Inazuma Eleven Victory Road en MODO VENTANA
+   (No pantalla completa)
+
+2. Ejecuta GARGUEL (py garguel.py o el .exe)
+
+3. En la interfaz:
+   • Selecciona dificultad (Fácil/Normal/Difícil)
+   • Click "▶ INICIAR"
+
+4. GARGUEL farmea automáticamente y muestra:
+   ⏱️  Tiempo de cada partido
+   📊 Estadísticas acumuladas
+   🏆 Récord más rápido
+   💡 Margen de mejora
+
+
+📊 DETECCIÓN DINÁMICA DE TIEMPOS
+═══════════════════════════════════════════════════════════════
+
+GARGUEL NO usa tiempos fijos. Mide en tiempo real:
+
+✓ Duración del primer tiempo
+✓ Duración del segundo tiempo
+✓ Tiempo total del partido
+✓ Promedio histórico
+✓ Récord más rápido
+✓ Margen de mejora vs récord
+
+Cada partido puede durar diferente (es normal).
+
+
+🎯 SECUENCIA AUTOMÁTICA (17 PASOS)
+═══════════════════════════════════════════════════════════════
+
+PRE-PARTIDO (1-11):
+   1. Intro
+   2. Dificultad
+   3. Batalla
+   4-9. Configuración
+   10. MODO COMANDANTE (se activa UNA vez)
+   11. Saque
+
+PRIMER TIEMPO (12):
+   → Espera dinámicamente hasta ver medio tiempo
+
+MEDIO TIEMPO (13-14):
+   → Pantallas de transición
+
+SEGUNDO TIEMPO (15):
+   → Espera dinámicamente hasta ver experiencia
+
+POST-PARTIDO (16-17):
+   → Experiencia y recompensas
+
+→ LOOP (vuelve al inicio)
+
+
+⚙️  CONFIGURACIÓN
+═══════════════════════════════════════════════════════════════
+
+Archivo: config.json
+
+{
+    "game_window_region": null,
+    "template_threshold": 0.60
+}
+
+• game_window_region: Región del juego [x, y, ancho, alto]
+  Ejemplo: [0, 0, 1280, 720]
+
+• template_threshold: Sensibilidad (0.50-0.75)
+  - 0.50 = Más permisivo
+  - 0.60 = Balanceado (por defecto)
+
+
+🐛 SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════════
+
+❌ No encuentra botones
+   → Reduce threshold a 0.50 en config.json
+
+❌ Clicks incorrectos
+   → Juego en MODO VENTANA (obligatorio)
+   → Configura game_window_region
+
+❌ Python no funciona
+   → Instala Python 3.8+ desde python.org
+   → Marca "Add Python to PATH" al instalar
+
+❌ El .exe no funciona
+   → Asegúrate de tener templates/ y config.json en la carpeta
+   → Ver: COMO_GENERAR_EXE.txt
+
+
+📁 ARCHIVOS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+garguel.py              ← Aplicación principal
+GENERAR_EXE.bat         ← Genera el ejecutable
+COMO_GENERAR_EXE.txt    ← Instrucciones detalladas .exe
+requirements.txt        ← Dependencias
+config.json            ← Configuración
+templates/             ← Imágenes de botones (15 archivos)
+README.md              ← Documentación completa
+LEEME.txt              ← Este archivo
+LICENSE.txt            ← Copyright
+
+
+📦 BASE DE DATOS DE JUGADORES
+═══════════════════════════════════════════════════════════════
+
+URL: https://docs.google.com/spreadsheets/d/1HW-weeq79GRnoZNcfbj7bINVaDv55WVl
+
+Créditos: Creador de la base de datos de IEVR
+
+Para importar:
+   py import_players.py
+
+
+💾 BASE DE DATOS LOCAL
+═══════════════════════════════════════════════════════════════
+
+Archivo: garguel.db (se crea automáticamente)
+
+Registra:
+• Todos los partidos
+• Tiempos detallados
+• Estadísticas acumuladas
+
+
+💡 CONSEJOS
+═══════════════════════════════════════════════════════════════
+
+✓ Juego en MODO VENTANA (obligatorio)
+✓ No mover el juego tras iniciar
+✓ Cada partido puede durar diferente (normal)
+✓ Revisar screenshots/ si hay errores
+
+
+❓ FAQ
+═══════════════════════════════════════════════════════════════
+
+P: ¿Necesito generar el .exe?
+R: No, puedes ejecutar con: py garguel.py
+
+P: ¿Por qué los partidos duran diferente?
+R: GARGUEL usa detección dinámica, no tiempos fijos
+
+P: ¿Funciona en pantalla completa?
+R: No, DEBE estar en modo ventana
+
+P: ¿Cómo genero el .exe?
+R: Doble click en GENERAR_EXE.bat o ver COMO_GENERAR_EXE.txt
+
+
+📜 CRÉDITOS
+═══════════════════════════════════════════════════════════════
+
+GARGUEL v1.0
+   Desarrollador: kazah-png
+   Copyright (c) 2026 kazah-png
+   Todos los derechos reservados
+
+Base de datos de jugadores:
+   Google Sheets IEVR
+   Créditos: Creador de la base de datos
+
+
+📞 DOCUMENTACIÓN
+═══════════════════════════════════════════════════════════════
+
+• COMO_GENERAR_EXE.txt - Instrucciones .exe detalladas
+• README.md - Documentación técnica completa
+• INSTRUCCIONES.md - Guía rápida
+
+
+═══════════════════════════════════════════════════════════════
+
+⚽ ¡Disfruta del farmeo automático con análisis de tiempos!
+
+Copyright (c) 2026 kazah-png
+
+═══════════════════════════════════════════════════════════════
