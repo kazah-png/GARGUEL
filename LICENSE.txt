@@ -1,0 +1,85 @@
+LICENCIA DE SOFTWARE PROPIETARIO
+
+GARGUEL v1.1
+Copyright (c) 2026 kazah-png
+GitHub: https://github.com/kazah-png/GARGUEL
+Todos los derechos reservados.
+
+═══════════════════════════════════════════════════════════════
+
+1. PROPIEDAD INTELECTUAL
+
+   Este software y toda su documentación asociada son propiedad
+   exclusiva de kazah-png. Todos los derechos están reservados.
+
+2. CONCESIÓN DE LICENCIA
+
+   Se concede permiso para usar este software únicamente bajo las
+   siguientes condiciones:
+
+   a) USO PERSONAL: Permitido para uso personal no comercial.
+   
+   b) MODIFICACIÓN: Permitida únicamente para uso personal. Las
+      modificaciones NO pueden ser distribuidas.
+   
+   c) ESTUDIO: Permitido el estudio del código con fines
+      educativos.
+
+3. RESTRICCIONES
+
+   NO está permitido:
+
+   a) Distribución comercial del software
+   b) Venta del software o copias modificadas
+   c) Sublicenciar el software a terceros
+   d) Remoción o alteración de avisos de copyright
+   e) Uso del nombre "kazah-png" para promoción sin permiso
+   f) Redistribución del software (con o sin modificaciones)
+
+4. GARANTÍA
+
+   Este software se proporciona "TAL CUAL", sin garantía de ningún
+   tipo, expresa o implícita, incluyendo pero no limitado a las
+   garantías de comerciabilidad, idoneidad para un propósito
+   particular y no infracción.
+
+5. LIMITACIÓN DE RESPONSABILIDAD
+
+   En ningún caso el autor (kazah-png) será responsable de ningún
+   reclamo, daño u otra responsabilidad, ya sea en una acción de
+   contrato, agravio o de otro tipo, que surja de, fuera de o en
+   conexión con el software o el uso u otros tratos en el software.
+
+6. TERMINACIÓN
+
+   Esta licencia es efectiva hasta que sea terminada. Tus derechos
+   bajo esta licencia terminarán automáticamente sin aviso de
+   kazah-png si no cumples con cualquiera de los términos de esta
+   licencia.
+
+7. CONTRIBUCIONES
+
+   Si contribuyes código o contenido al proyecto a través de pull
+   requests o issues, aceptas que tu contribución estará sujeta a
+   los mismos términos de esta licencia y que kazah-png tendrá
+   todos los derechos sobre tu contribución.
+
+8. JURISDICCIÓN
+
+   Esta licencia se regirá e interpretará de acuerdo con las leyes
+   del país de residencia del autor, sin tener en cuenta sus
+   conflictos de disposiciones legales.
+
+9. CONTACTO
+
+   Para permisos adicionales o consultas sobre licenciamiento
+   comercial, contacta al autor a través de:
+   GitHub: https://github.com/kazah-png/GARGUEL
+
+═══════════════════════════════════════════════════════════════
+
+Copyright (c) 2026 kazah-png
+Todos los derechos reservados.
+
+GARGUEL v1.1
+GitHub: https://github.com/kazah-png/GARGUEL

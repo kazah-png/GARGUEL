@@ -1,0 +1,152 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║           ⚽ GARGUEL v1.1 - LÉEME PRIMERO ⚽                  ║
+║                                                              ║
+║              Copyright (c) 2026 kazah-png                    ║
+║        GitHub: https://github.com/kazah-png/GARGUEL         ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+⚠️  IMPORTANTE: EVITA ERRORES
+══════════════════════════════════════════════════════════════
+
+Si ves errores como:
+  ❌ "lost sys.stdin"
+  ❌ "No module named 'psutil'"
+  ❌ "pyimod02_importers error"
+
+¡NO TE PREOCUPES! Hay una solución simple.
+
+
+✅ SOLUCIÓN RÁPIDA (2 PASOS)
+══════════════════════════════════════════════════════════════
+
+PASO 1: Instalar dependencias mínimas
+────────────────────────────────────────────────────────────
+
+Abre CMD o PowerShell en esta carpeta y ejecuta:
+
+py -m pip install customtkinter pillow opencv-python numpy pyautogui pandas openpyxl
+
+(Tarda 1-2 minutos)
+
+
+PASO 2: Iniciar GARGUEL Simple
+────────────────────────────────────────────────────────────
+
+Opción A (Más fácil):
+  → Doble click en: INICIAR_SIMPLE.bat
+
+Opción B (Comando):
+  → py garguel_simple.py
+
+
+¡LISTO! GARGUEL funcionará sin errores.
+
+
+📋 ¿QUÉ VERSIÓN USAR?
+══════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────┐
+│  VERSIÓN SIMPLE (RECOMENDADA)                           │
+├─────────────────────────────────────────────────────────┤
+│  ✅ Sin errores                                         │
+│  ✅ Instalación rápida (1-2 min)                        │
+│  ✅ Farmeo completo                                     │
+│  ✅ Estadísticas                                        │
+│  ✅ Interfaz gráfica limpia                             │
+│  ✅ Todo lo esencial                                    │
+│                                                         │
+│  Archivo: garguel_simple.py                             │
+│  Ejecutar: INICIAR_SIMPLE.bat                           │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│  VERSIÓN COMPLETA (AVANZADA)                            │
+├─────────────────────────────────────────────────────────┤
+│  ✅ Todo lo de la simple +                              │
+│  ✅ IA con aprendizaje profundo                         │
+│  ✅ Gráficos en tiempo real                             │
+│  ✅ Visualización de red neuronal                       │
+│  ✅ Optimización del sistema                            │
+│                                                         │
+│  ⚠️  Requiere más dependencias                          │
+│  ⚠️  Instalación más lenta (5-10 min)                   │
+│  ⚠️  Puede dar errores en algunos sistemas              │
+│                                                         │
+│  Archivo: main.py                                       │
+│  Ejecutar: py main.py (después de instalar todo)        │
+└─────────────────────────────────────────────────────────┘
+
+
+🎯 INICIO GARANTIZADO
+══════════════════════════════════════════════════════════════
+
+Para empezar SIN COMPLICACIONES:
+
+  1. Instala las dependencias mínimas (comando arriba)
+  
+  2. Doble click en: INICIAR_SIMPLE.bat
+  
+  3. ¡A farmear!
+
+
+📦 ARCHIVOS PARA INICIAR
+══════════════════════════════════════════════════════════════
+
+INICIAR_SIMPLE.bat          ← ⭐ USA ESTE (simple, sin errores)
+INICIAR_GARGUEL.bat         ← También funciona (usa versión simple)
+garguel_simple.py           ← Versión simplificada (recomendada)
+
+INSTALAR_DEPENDENCIAS.bat   ← Instalador automático
+requirements_minimal.txt     ← Dependencias mínimas
+
+
+⚠️  NO USAR (dan errores):
+──────────────────────────────────────────────────────────────
+
+❌ main.py                   (requiere psutil, matplotlib, etc)
+❌ launcher.py               (obsoleto, ahora usa versión simple)
+❌ py main.py                (Error: lost sys.stdin)
+
+
+🔧 DEPENDENCIAS NECESARIAS (MÍNIMAS)
+══════════════════════════════════════════════════════════════
+
+customtkinter    ← Interfaz gráfica
+pillow           ← Manejo de imágenes
+opencv-python    ← Detección de templates
+numpy            ← Cálculos numéricos
+pyautogui        ← Automatización de clicks
+pandas           ← Estadísticas
+openpyxl         ← Exportar a Excel
+
+Instalar todas:
+py -m pip install customtkinter pillow opencv-python numpy pyautogui pandas openpyxl
+
+
+📚 DOCUMENTACIÓN
+══════════════════════════════════════════════════════════════
+
+README.md              ← Documentación completa
+INICIO_RAPIDO.txt      ← Guía de inicio rápido
+LEEME.txt              ← Guía en español
+
+
+🆘 SOPORTE
+══════════════════════════════════════════════════════════════
+
+Si tienes problemas:
+
+1. Lee INICIO_RAPIDO.txt
+2. Revisa que instalaste las dependencias
+3. Usa INICIAR_SIMPLE.bat (nunca falla)
+4. Reporta en: https://github.com/kazah-png/GARGUEL/issues
+
+
+═══════════════════════════════════════════════════════════════
+
+¡Disfruta de GARGUEL! ⚽
+
+Copyright (c) 2026 kazah-png
