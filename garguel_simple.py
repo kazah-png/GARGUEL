@@ -341,145 +341,370 @@ class SimpleGUI:
     def setup_gui(self):
         """Configurar interfaz"""
         self.root = ctk.CTk()
-        self.root.title("⚽ GARGUEL v1.1 Simple - by kazah-png")
-        self.root.geometry("900x700")
+        self.root.title("⚽ GARGUEL v1.1 - Bot Profesional con NEXUS IA - by kazah-png")
+        self.root.geometry("1000x750")
         
-        # Frame principal
-        main_frame = ctk.CTkFrame(self.root)
-        main_frame.pack(fill="both", expand=True, padx=20, pady=20)
+        # Configurar tema oscuro de calidad
+        ctk.set_appearance_mode("dark")
         
-        # Logo y título
-        logo_label = ctk.CTkLabel(
-            main_frame,
-            text="⚽ GARGUEL v1.1",
-            font=ctk.CTkFont(size=40, weight="bold")
+        # Frame principal con gradiente visual
+        main_frame = ctk.CTkFrame(self.root, fg_color=("#1a1a1a", "#0a0a0a"))
+        main_frame.pack(fill="both", expand=True, padx=15, pady=15)
+        
+        # Header con logo
+        header_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
+        header_frame.pack(fill="x", pady=(10, 20))
+        
+        # Intentar cargar logo épico
+        logo_loaded = False
+        try:
+            from PIL import Image
+            logo_path = Path("logo.png")
+            if logo_path.exists():
+                logo_img = Image.open(logo_path)
+                logo_img = logo_img.resize((120, 120), Image.Resampling.LANCZOS)
+                logo_photo = ctk.CTkImage(light_image=logo_img, dark_image=logo_img, size=(120, 120))
+                logo_label = ctk.CTkLabel(header_frame, image=logo_photo, text="")
+                logo_label.pack(pady=5)
+                logo_loaded = True
+        except:
+            pass
+        
+        if not logo_loaded:
+            # Fallback a emoji grande
+            logo_label = ctk.CTkLabel(
+                header_frame,
+                text="⚽",
+                font=ctk.CTkFont(size=80)
+            )
+            logo_label.pack(pady=5)
+        
+        # Título principal
+        title_label = ctk.CTkLabel(
+            header_frame,
+            text="GARGUEL v1.1",
+            font=ctk.CTkFont(size=48, weight="bold"),
+            text_color=("#00d4ff", "#00d4ff")
         )
-        logo_label.pack(pady=20)
+        title_label.pack()
         
         subtitle = ctk.CTkLabel(
-            main_frame,
-            text="Bot de Farmeo Simplificado",
-            font=ctk.CTkFont(size=16)
+            header_frame,
+            text="Bot de Farmeo Profesional • Powered by NEXUS IA",
+            font=ctk.CTkFont(size=14),
+            text_color=("gray70", "gray50")
         )
-        subtitle.pack()
+        subtitle.pack(pady=(5, 0))
         
-        # Stats
-        stats_frame = ctk.CTkFrame(main_frame)
-        stats_frame.pack(pady=20, padx=20, fill="x")
+        # Separador con estilo
+        separator = ctk.CTkFrame(main_frame, height=2, fg_color=("#00d4ff", "#0088aa"))
+        separator.pack(fill="x", padx=40, pady=15)
+        
+        # Stats con mejor diseño
+        stats_frame = ctk.CTkFrame(
+            main_frame,
+            corner_radius=15,
+            fg_color=("#2a2a2a", "#1a1a1a"),
+            border_width=2,
+            border_color=("#00d4ff", "#0088aa")
+        )
+        stats_frame.pack(pady=15, padx=30, fill="x")
+        
+        stats_title = ctk.CTkLabel(
+            stats_frame,
+            text="📊 ESTADÍSTICAS",
+            font=ctk.CTkFont(size=16, weight="bold"),
+            text_color=("#00d4ff", "#00d4ff")
+        )
+        stats_title.pack(pady=(15, 10))
         
         s = self.bot.stats
         
-        stats_text = f"""
-        📊 ESTADÍSTICAS
+        # Grid de stats
+        stats_grid = ctk.CTkFrame(stats_frame, fg_color="transparent")
+        stats_grid.pack(fill="x", padx=20, pady=10)
         
-        Total Partidos: {s['total']}
-        Victorias: {s['victorias']}
-        Win Rate: {s['win_rate']:.1f}%
+        stats_grid.grid_columnconfigure((0, 1, 2, 3), weight=1)
         
-        Tiempo Promedio: {self.bot.fmt_time(s['avg_total'])}
-        Récord: {self.bot.fmt_time(s['record'])}
-        """
+        # Stat cards
+        self.create_stat_card(stats_grid, "🎮", "Total Partidos", str(s['total']), 0)
+        self.create_stat_card(stats_grid, "🏆", "Victorias", str(s['victorias']), 1)
+        self.create_stat_card(stats_grid, "📈", "Win Rate", f"{s['win_rate']:.1f}%", 2)
+        self.create_stat_card(stats_grid, "⏱️", "Promedio", self.bot.fmt_time(s['avg_total']), 3)
         
-        stats_label = ctk.CTkLabel(
-            stats_frame,
-            text=stats_text,
-            font=ctk.CTkFont(size=14),
-            justify="left"
+        # NEXUS IA indicator (si está disponible)
+        try:
+            nexus_frame = ctk.CTkFrame(
+                main_frame,
+                corner_radius=10,
+                fg_color=("#1a3a4a", "#0a1a2a"),
+                border_width=1,
+                border_color=("#00d4ff", "#0088aa")
+            )
+            nexus_frame.pack(pady=10, padx=30, fill="x")
+            
+            nexus_label = ctk.CTkLabel(
+                nexus_frame,
+                text="🧠 NEXUS IA: Sistema de Aprendizaje Activo",
+                font=ctk.CTkFont(size=12, weight="bold"),
+                text_color=("#00ff88", "#00dd77")
+            )
+            nexus_label.pack(pady=8)
+        except:
+            pass
+        
+        # Controles mejorados
+        controls_frame = ctk.CTkFrame(
+            main_frame,
+            corner_radius=15,
+            fg_color=("#2a2a2a", "#1a1a1a")
         )
-        stats_label.pack(pady=10)
-        
-        # Controles
-        controls_frame = ctk.CTkFrame(main_frame)
-        controls_frame.pack(pady=20, padx=20, fill="x")
+        controls_frame.pack(pady=15, padx=30, fill="x")
         
         ctk.CTkLabel(
             controls_frame,
-            text="Dificultad:",
-            font=ctk.CTkFont(size=14)
-        ).pack(pady=5)
+            text="⚙️ CONFIGURACIÓN",
+            font=ctk.CTkFont(size=14, weight="bold"),
+            text_color=("#00d4ff", "#00d4ff")
+        ).pack(pady=(15, 10))
+        
+        ctk.CTkLabel(
+            controls_frame,
+            text="Selecciona la dificultad:",
+            font=ctk.CTkFont(size=13)
+        ).pack(pady=(5, 5))
         
         self.diff_var = ctk.StringVar(value="Normal")
         diff_menu = ctk.CTkOptionMenu(
             controls_frame,
             values=["Fácil", "Normal", "Difícil"],
             variable=self.diff_var,
-            width=300,
-            height=40,
-            font=ctk.CTkFont(size=14)
+            width=350,
+            height=45,
+            font=ctk.CTkFont(size=14),
+            fg_color=("#0088aa", "#006688"),
+            button_color=("#00d4ff", "#0088aa"),
+            button_hover_color=("#00ffcc", "#00aa88")
         )
         diff_menu.pack(pady=10)
         
-        # Botones
+        # Botones mejorados
         buttons_frame = ctk.CTkFrame(controls_frame, fg_color="transparent")
         buttons_frame.pack(pady=20)
         
         self.start_btn = ctk.CTkButton(
             buttons_frame,
-            text="▶ INICIAR",
+            text="▶ INICIAR FARMEO",
             command=self.start,
-            width=200,
-            height=50,
+            width=220,
+            height=55,
             font=ctk.CTkFont(size=16, weight="bold"),
-            fg_color="#2ecc71",
-            hover_color="#27ae60"
+            fg_color=("#00cc66", "#00aa55"),
+            hover_color=("#00ff88", "#00cc66"),
+            corner_radius=12
         )
-        self.start_btn.pack(side="left", padx=5)
+        self.start_btn.pack(side="left", padx=8)
         
         self.pause_btn = ctk.CTkButton(
             buttons_frame,
             text="⏸ Pausar",
             command=self.pause,
-            width=150,
-            height=50,
+            width=160,
+            height=55,
             font=ctk.CTkFont(size=14),
-            state="disabled"
+            state="disabled",
+            fg_color=("#ff9900", "#cc7700"),
+            hover_color=("#ffaa33", "#dd8800"),
+            corner_radius=12
         )
-        self.pause_btn.pack(side="left", padx=5)
+        self.pause_btn.pack(side="left", padx=8)
         
         self.stop_btn = ctk.CTkButton(
             buttons_frame,
             text="⏹ Detener",
             command=self.stop,
-            width=150,
-            height=50,
+            width=160,
+            height=55,
             font=ctk.CTkFont(size=14),
             state="disabled",
-            fg_color="#e74c3c",
-            hover_color="#c0392b"
+            fg_color=("#ff3366", "#cc2244"),
+            hover_color=("#ff5588", "#dd3355"),
+            corner_radius=12
         )
-        self.stop_btn.pack(side="left", padx=5)
+        self.stop_btn.pack(side="left", padx=8)
         
-        # Info
-        info_frame = ctk.CTkFrame(main_frame)
-        info_frame.pack(pady=20, padx=20, fill="both", expand=True)
+        # Espaciado adicional para asegurar visibilidad
+        ctk.CTkLabel(controls_frame, text="", height=10).pack()
+        
+        # Botones de utilidades
+        utils_label = ctk.CTkLabel(
+            controls_frame,
+            text="🔧 UTILIDADES",
+            font=ctk.CTkFont(size=12, weight="bold"),
+            text_color=("gray70", "gray50")
+        )
+        utils_label.pack(pady=(5, 5))
+        
+        utils_frame = ctk.CTkFrame(controls_frame, fg_color="transparent")
+        utils_frame.pack(pady=10)
+        
+        calibrate_btn = ctk.CTkButton(
+            utils_frame,
+            text="🎯 Auto-Calibrar Región",
+            command=self.auto_calibrate,
+            width=250,
+            height=40,
+            font=ctk.CTkFont(size=12),
+            fg_color=("#4a90e2", "#3670b2"),
+            hover_color=("#5aa0f2", "#4680c2"),
+            corner_radius=10
+        )
+        calibrate_btn.pack(side="left", padx=5)
+        
+        export_btn = ctk.CTkButton(
+            utils_frame,
+            text="📊 Exportar a Excel",
+            command=self.export_excel,
+            width=250,
+            height=40,
+            font=ctk.CTkFont(size=12),
+            fg_color=("#4a90e2", "#3670b2"),
+            hover_color=("#5aa0f2", "#4680c2"),
+            corner_radius=10
+        )
+        export_btn.pack(side="left", padx=5)
+        
+        # Espaciado final
+        ctk.CTkLabel(controls_frame, text="", height=15).pack()
+        
+        # Log mejorado
+        log_label = ctk.CTkLabel(
+            main_frame,
+            text="📜 REGISTRO DE ACTIVIDAD",
+            font=ctk.CTkFont(size=13, weight="bold"),
+            text_color=("#00d4ff", "#00d4ff")
+        )
+        log_label.pack(pady=(10, 5))
+        
+        log_frame = ctk.CTkFrame(
+            main_frame,
+            corner_radius=10,
+            fg_color=("#1a1a1a", "#0a0a0a"),
+            border_width=2,
+            border_color=("#333333", "#222222")
+        )
+        log_frame.pack(pady=5, padx=30, fill="both", expand=True)
         
         self.log_text = ctk.CTkTextbox(
-            info_frame,
-            font=ctk.CTkFont(size=11, family="Courier")
+            log_frame,
+            font=ctk.CTkFont(size=11, family="Consolas"),
+            fg_color=("#0a0a0a", "#000000"),
+            text_color=("#00ff88", "#00dd77"),
+            wrap="word"
         )
-        self.log_text.pack(fill="both", expand=True, padx=10, pady=10)
+        self.log_text.pack(fill="both", expand=True, padx=5, pady=5)
         
-        self.log_text.insert("end", "⚽ GARGUEL v1.1 Simple\n")
-        self.log_text.insert("end", "Copyright (c) 2026 kazah-png\n\n")
-        self.log_text.insert("end", "Versión simplificada sin dependencias avanzadas\n")
-        self.log_text.insert("end", "Listo para usar.\n\n")
+        self.log_text.insert("end", "╔═══════════════════════════════════════════════════════╗\n")
+        self.log_text.insert("end", "║   ⚽ GARGUEL v1.1 - Sistema de Farmeo Inteligente    ║\n")
+        self.log_text.insert("end", "╚═══════════════════════════════════════════════════════╝\n\n")
+        self.log_text.insert("end", "🧠 NEXUS IA: Sistema de aprendizaje adaptativo\n")
+        self.log_text.insert("end", "📊 Base de datos: SQLite persistente\n")
+        self.log_text.insert("end", "🎯 Detección: Templates con OpenCV\n")
+        self.log_text.insert("end", "⚡ Optimización: Detección dinámica de tiempos\n\n")
+        self.log_text.insert("end", "✅ Sistema inicializado y listo para usar\n")
+        self.log_text.insert("end", "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
         
-        # Status
-        self.status_label = ctk.CTkLabel(
+        # Status bar mejorado
+        status_frame = ctk.CTkFrame(
             self.root,
-            text="⚪ Detenido",
-            font=ctk.CTkFont(size=12, weight="bold")
+            height=45,
+            corner_radius=0,
+            fg_color=("#1a1a1a", "#0a0a0a"),
+            border_width=2,
+            border_color=("#00d4ff", "#0088aa")
         )
-        self.status_label.pack(pady=10)
+        status_frame.pack(fill="x", side="bottom")
+        
+        status_content = ctk.CTkFrame(status_frame, fg_color="transparent")
+        status_content.pack(fill="x", padx=15, pady=8)
+        
+        self.status_label = ctk.CTkLabel(
+            status_content,
+            text="⚪ DETENIDO",
+            font=ctk.CTkFont(size=12, weight="bold"),
+            text_color=("#aaaaaa", "#888888")
+        )
+        self.status_label.pack(side="left")
+        
+        # Separador
+        ctk.CTkFrame(
+            status_content,
+            width=2,
+            height=25,
+            fg_color=("#444444", "#333333")
+        ).pack(side="left", padx=15)
+        
+        nexus_status = ctk.CTkLabel(
+            status_content,
+            text="🧠 NEXUS: Listo",
+            font=ctk.CTkFont(size=11),
+            text_color=("#00ff88", "#00dd77")
+        )
+        nexus_status.pack(side="left", padx=10)
+        
+        copyright_label = ctk.CTkLabel(
+            status_content,
+            text="© 2026 kazah-png | GitHub: kazah-png/GARGUEL",
+            font=ctk.CTkFont(size=9),
+            text_color=("gray60", "gray40")
+        )
+        copyright_label.pack(side="right")
         
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
+    
+    def create_stat_card(self, parent, icon, title, value, col):
+        """Crear tarjeta de estadística"""
+        card = ctk.CTkFrame(
+            parent,
+            corner_radius=10,
+            fg_color=("#1a3a4a", "#0a1a2a"),
+            border_width=1,
+            border_color=("#00d4ff", "#0088aa")
+        )
+        card.grid(row=0, column=col, padx=8, pady=10, sticky="ew")
+        
+        icon_label = ctk.CTkLabel(
+            card,
+            text=icon,
+            font=ctk.CTkFont(size=28)
+        )
+        icon_label.pack(pady=(10, 5))
+        
+        value_label = ctk.CTkLabel(
+            card,
+            text=value,
+            font=ctk.CTkFont(size=20, weight="bold"),
+            text_color=("#00d4ff", "#00d4ff")
+        )
+        value_label.pack()
+        
+        title_label = ctk.CTkLabel(
+            card,
+            text=title,
+            font=ctk.CTkFont(size=10),
+            text_color=("gray70", "gray50")
+        )
+        title_label.pack(pady=(0, 10))
     
     def start(self):
         """Iniciar"""
         self.start_btn.configure(state="disabled")
         self.pause_btn.configure(state="normal")
         self.stop_btn.configure(state="normal")
-        self.status_label.configure(text="🟢 Ejecutando")
+        self.status_label.configure(
+            text="🟢 EJECUTANDO",
+            text_color=("#00ff88", "#00dd77")
+        )
         
         diff = self.diff_var.get()
         
@@ -490,19 +715,31 @@ class SimpleGUI:
         )
         self.thread.start()
         
-        self.log_text.insert("end", f"\n▶ Iniciado en dificultad: {diff}\n")
+        self.log_text.insert("end", f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n")
+        self.log_text.insert("end", f"▶ FARMEO INICIADO\n")
+        self.log_text.insert("end", f"🎯 Dificultad: {diff}\n")
+        self.log_text.insert("end", f"🧠 NEXUS IA: Analizando patrones...\n")
+        self.log_text.insert("end", f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
+        self.log_text.see("end")
     
     def pause(self):
         """Pausar"""
         self.bot.pause()
         if self.bot.paused:
             self.pause_btn.configure(text="▶ Reanudar")
-            self.status_label.configure(text="🟡 Pausado")
-            self.log_text.insert("end", "⏸ Pausado\n")
+            self.status_label.configure(
+                text="🟡 PAUSADO",
+                text_color=("#ffaa00", "#dd8800")
+            )
+            self.log_text.insert("end", "⏸ Sistema pausado\n")
         else:
             self.pause_btn.configure(text="⏸ Pausar")
-            self.status_label.configure(text="🟢 Ejecutando")
-            self.log_text.insert("end", "▶ Reanudado\n")
+            self.status_label.configure(
+                text="🟢 EJECUTANDO",
+                text_color=("#00ff88", "#00dd77")
+            )
+            self.log_text.insert("end", "▶ Sistema reanudado\n")
+        self.log_text.see("end")
     
     def stop(self):
         """Detener"""
@@ -510,8 +747,107 @@ class SimpleGUI:
         self.start_btn.configure(state="normal")
         self.pause_btn.configure(state="disabled", text="⏸ Pausar")
         self.stop_btn.configure(state="disabled")
-        self.status_label.configure(text="⚪ Detenido")
-        self.log_text.insert("end", "⏹ Detenido\n")
+        self.status_label.configure(
+            text="⚪ DETENIDO",
+            text_color=("#aaaaaa", "#888888")
+        )
+        self.log_text.insert("end", "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n")
+        self.log_text.insert("end", "⏹ Farmeo detenido\n")
+        self.log_text.insert("end", "🧠 NEXUS IA: Guardando datos de aprendizaje...\n")
+        self.log_text.insert("end", "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
+        self.log_text.see("end")
+    
+    def auto_calibrate(self):
+        """Auto-calibrar región del juego"""
+        self.log_text.insert("end", "\n🎯 Intentando calibrar región automáticamente...\n")
+        self.log_text.see("end")
+        
+        try:
+            # Buscar ventana del juego
+            import pygetwindow as gw
+            windows = gw.getWindowsWithTitle("Inazuma")
+            
+            if not windows:
+                windows = gw.getWindowsWithTitle("IEVR")
+            
+            if not windows:
+                windows = gw.getWindowsWithTitle("Victory Road")
+            
+            if windows:
+                win = windows[0]
+                region = (win.left, win.top, win.left + win.width, win.top + win.height)
+                
+                # Guardar en config
+                import json
+                with open('config.json', 'r', encoding='utf-8') as f:
+                    config = json.load(f)
+                
+                config['game_window_region'] = list(region)
+                
+                with open('config.json', 'w', encoding='utf-8') as f:
+                    json.dump(config, f, indent=2, ensure_ascii=False)
+                
+                self.bot.region = region
+                
+                self.log_text.insert("end", f"✅ Región calibrada: {region}\n")
+                self.log_text.insert("end", "💾 Configuración guardada\n")
+                messagebox.showinfo("Éxito", f"Región calibrada:\n{region}")
+            else:
+                self.log_text.insert("end", "⚠️ No se encontró ventana del juego\n")
+                messagebox.showwarning("Advertencia", "Abre Inazuma Eleven en modo ventana")
+                
+        except ImportError:
+            self.log_text.insert("end", "⚠️ Instala: py -m pip install pygetwindow\n")
+            messagebox.showinfo("Info", "Instala:\npy -m pip install pygetwindow")
+        except Exception as e:
+            self.log_text.insert("end", f"❌ Error: {e}\n")
+            messagebox.showerror("Error", f"No se pudo calibrar: {e}")
+        
+        self.log_text.see("end")
+    
+    def export_excel(self):
+        """Exportar estadísticas a Excel"""
+        self.log_text.insert("end", "\n📊 Exportando estadísticas a Excel...\n")
+        self.log_text.see("end")
+        
+        try:
+            import pandas as pd
+            import sqlite3
+            from datetime import datetime
+            
+            conn = sqlite3.connect(self.bot.db_path)
+            matches_df = pd.read_sql_query("SELECT * FROM matches", conn)
+            conn.close()
+            
+            if matches_df.empty:
+                self.log_text.insert("end", "⚠️ No hay datos para exportar\n")
+                messagebox.showinfo("Info", "No hay partidos registrados aún")
+                return
+            
+            filename = f"garguel_stats_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
+            
+            with pd.ExcelWriter(filename, engine='openpyxl') as writer:
+                matches_df.to_excel(writer, sheet_name='Partidos', index=False)
+                
+                summary = pd.DataFrame({
+                    'Métrica': ['Total', 'Victorias', 'Win Rate %', 'Tiempo Promedio (s)'],
+                    'Valor': [
+                        self.bot.stats['total'],
+                        self.bot.stats['victorias'],
+                        round(self.bot.stats['win_rate'], 2),
+                        self.bot.stats['avg_total']
+                    ]
+                })
+                summary.to_excel(writer, sheet_name='Resumen', index=False)
+            
+            self.log_text.insert("end", f"✅ Exportado: {filename}\n")
+            messagebox.showinfo("Éxito", f"Exportado:\n{filename}")
+            
+        except Exception as e:
+            self.log_text.insert("end", f"❌ Error: {e}\n")
+            messagebox.showerror("Error", f"No se pudo exportar: {e}")
+        
+        self.log_text.see("end")
     
     def on_close(self):
         """Al cerrar"""
@@ -531,16 +867,18 @@ if __name__ == "__main__":
     print("""
 ╔══════════════════════════════════════════════════════════════╗
 ║                                                              ║
-║           ⚽ GARGUEL v1.1 SIMPLE ⚽                            ║
-║         Bot de Farmeo Simplificado                           ║
+║           ⚽ GARGUEL v1.1 PROFESSIONAL ⚽                      ║
+║         Bot Avanzado • Powered by NEXUS IA                   ║
 ║                                                              ║
 ║              Copyright (c) 2026 kazah-png                    ║
 ║        GitHub: https://github.com/kazah-png/GARGUEL         ║
 ║                                                              ║
 ╚══════════════════════════════════════════════════════════════╝
 
-🚀 Versión simplificada - Sin dependencias avanzadas
-✅ Funciona sin: psutil, matplotlib, sklearn
+🧠 NEXUS IA: Sistema de aprendizaje adaptativo
+🚀 Versión optimizada - Sin dependencias avanzadas
+✅ Detección dinámica con OpenCV
+⚡ Base de datos SQLite integrada
     """)
     
     try:
