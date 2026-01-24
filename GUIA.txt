@@ -1,0 +1,57 @@
+========================================
+  GARGUEL v1.3 - GUIA RAPIDA
+========================================
+
+NOVEDAD:
+- Un solo archivo Python
+- Ventana completa al iniciar
+- Posiciones de macro optimizadas
+- Genera .exe standalone
+
+
+INSTALACION:
+
+1. INSTALAR.bat (instala 2 paquetes)
+2. INICIAR.bat
+
+
+GENERAR .EXE:
+
+1. CREAR_EXE.bat
+2. Espera 3-5 minutos
+3. .exe en: dist\GARGUEL.exe
+4. Distribuye el .exe solo
+
+
+USO:
+
+1. Abre Inazuma Eleven
+2. Ejecuta GARGUEL
+3. Selecciona dificultad
+4. INICIAR FARMEO
+
+
+POSICIONES:
+
+Optimizadas para 1920x1080:
+- Botones centrados
+- Esquinas para skip
+- Auto en superior derecha
+
+
+TIEMPOS:
+
+- Partido: 40 segundos
+- Total ciclo: 50 segundos
+- Basado en macro real
+
+
+VENTANA:
+
+Inicia en modo maximizado
+(ventana completa sin fullscreen)
+
+
+SOPORTE:
+
+GitHub: github.com/kazah-png/GARGUEL
